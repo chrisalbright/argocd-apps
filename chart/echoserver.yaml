@@ -2,14 +2,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workload-applications
+  name: echoserver
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: workloads
+  project: default
   destination:
-    namespace: workload-applications
+    namespace: echoserver
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/chrisalbright/argocd-apps.git

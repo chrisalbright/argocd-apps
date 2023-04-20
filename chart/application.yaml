@@ -1,30 +1,5 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: workloads
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: "Workload Apps"
-  sourceRepos:
-    - '*'
-
-  destinations:
-    - namespace: argocd
-      server: https://kubernetes.default.svc
-      name: in-cluster
-    - namespace: workload-applications
-      server: https://kubernetes.default.svc
-      name: in-cluster
-
-  clusterResourceWhitelist:
-    - group: ''
-      kind: Namespace
-
----
-apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: workload-applications
@@ -32,7 +7,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: workloads
+  project: default
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
