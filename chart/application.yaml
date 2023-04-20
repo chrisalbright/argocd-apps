@@ -8,6 +8,21 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   description: "Workload Apps"
+  sourceRepos:
+    - '*'
+
+  destinations:
+    - namespace: workload-applications
+      server: https://kubernetes.default.svc
+      name: in-cluster
+    - namespace: workload-applications
+      server: https://kubernetes.default.svc
+      name: in-cluster
+
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
