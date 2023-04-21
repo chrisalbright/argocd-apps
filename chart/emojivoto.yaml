@@ -2,19 +2,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: echoserver
+  name: emojivoto
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   destination:
-    namespace: echoserver
+    namespace: emojivoto
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/chrisalbright/argocd-apps.git
     targetRevision: HEAD
-    path: echoserver
+    path: emojivoto
   syncPolicy:
     automated:
       prune: true
